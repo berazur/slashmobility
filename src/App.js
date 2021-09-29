@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useState } from 'react';
+import Cabecera from './componentes/Cabecera'
+import Formulario from './componentes/Formulario';
+import Grid from '@mui/material/Grid';
+import Mapa from './componentes/Mapa';
+
 
 function App() {
+
+  // State del formulario
+  const [perfil, guardarPerfil] = useState({
+    username: '',
+    email: '',
+    gender:'male',
+    bio:''
+});
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Cabecera />
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}  style={{ background: '#f1f1f1'}} >
+      <Grid item xs={6} marginTop={3} marginBottom={30} padding={5} display= "flex" justifyContent="center">
+      <Formulario 
+              perfil={perfil}
+              guardarPerfil={guardarPerfil}
+            />
+      </Grid>
+      <Grid item xs={6} marginTop={3} padding={5} display= "flex" justifyContent="center">
+        <Mapa />
+      </Grid>
+    </Grid>
+    </Fragment>
   );
 }
 
